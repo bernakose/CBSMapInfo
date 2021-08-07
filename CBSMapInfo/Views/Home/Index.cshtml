@@ -1,0 +1,56 @@
+﻿@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>First Web Map App</h2>
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistrictName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoorId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>*@
+
+<div id="map" class="map" style="height: 100%; width: 100%; background-color: white; position:inherit">
+
+</div>
+<form class="form-inline">
+    <label>Geometry type &nbsp;</label>
+    <select id="type">
+        <option value="None">None</option>
+        <option value="Point">Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+        <option value="Circle">Circle</option>
+        <option value="Square">Square</option>
+        <option value="Box">Box</option>
+    </select>
+</form>
