@@ -1,3 +1,4 @@
+using CBSMapInfo.Models;
 using FluentAssertions.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,11 +26,15 @@ namespace CBSMapInfo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<EfCoreContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            //services.AddMvc();
+            //services.AddRazorPages();
+
+
+            services.AddControllersWithViews();
+            services.AddDbContext<MapContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddControllersWithViews();
         }
 
 

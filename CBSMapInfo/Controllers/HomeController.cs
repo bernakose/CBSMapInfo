@@ -11,12 +11,12 @@ namespace CBSMapInfo.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly EfCoreContext _context;
-
-        //public HomeController(EfCoreContext context)
+        //private readonly EfCoreContext       
+        //public HomeController(MapContext context)
         //{
         //    _context = context;
-        //}
+        //} _context;
+
 
         private readonly ILogger<HomeController> _logger;
 

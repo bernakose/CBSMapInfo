@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CBSMapInfo.Models
 {
-    public class Context:DbContext
+    public class MapContext: DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public MapContext(DbContextOptions<MapContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\v11.0;Database=CBSMapInfo;Trusted_Connection=True;MultipleActiveResultSets=true");
+
         }
 
         public DbSet<District> Districts { get; set; }
