@@ -12,16 +12,68 @@
     <script src="https://cdn.polyfill.io/v3/polyfill.min.js?features=fetch,requestAnimationFrame,Element.prototype.classList,URL,TextDecoder,Number.isInteger"></script>
 </head>
 <body>
-
     <div class="container">
-        <div class="col-md-3">
-            
-        </div>
-        <div class="col-md-7">
-
-        </div>
-
+        <button type="button" class="btn btn-dark btn-group" data-toggle="modal" data-target="#MahalleEkle" style="float:right;">
+            Mahalle Ekle
+        </button>
+        <button type="button" class="btn btn-dark btn-group" data-toggle="modal" data-target="#KapiEkle"style="float:right;">
+            Kapı Ekle
+        </button>
     </div>
+    
+    <div class="modal fade" id="MahalleEkle" tabindex="-1" role="dialog" aria-labelledby="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Mahalle Ekle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form method="post" action="/home/uyeol">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Mahalle adınız: </label>
+                            <input type="text" name="kullaniciad" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Mahalle Kodunuz: </label>
+                            <input type="password" name="sifre" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-primary">Mahalle Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="KapiEkle" tabindex="-1" role="dialog" aria-labelledby="">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Kapı Ekle</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form method="post" action="/home/uyeol">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Kapı Numaranızı Giriniz: </label>
+                            <input type="text" name="kullaniciad" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Mahalle Kodunuz: </label>
+                            <input type="password" name="sifre" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                        <button type="submit" class="btn btn-primary">Kapı Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container">
         <main role="main" class="pb-3">

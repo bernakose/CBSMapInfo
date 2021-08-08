@@ -3,11 +3,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h2>First Web Map App</h2>
+<h3>Harita Bilgi</h3>
 
 <div id="map" class="map" style="height: 100%; width: 100%; background-color: white; position:inherit">
 
 </div>
+
+@*<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#MahalleEkle">
+    Mahalle Ekle
+</button>
+<div class="modal fade" id="MahalleEkle" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mahalle Ekle</h4>
+            </div>
+            <form method="post" action="/home/uyeol">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mahalle adınız: </label>
+                            <input type="text" name="kullaniciad" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Mahalle Kodunuz: </label>
+                        <input type="password" name="sifre" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Mahalle Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>*@
+
 <form class="form-inline">
     <label>Geometry type &nbsp;</label>
     <select id="type">
