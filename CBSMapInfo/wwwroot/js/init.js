@@ -2,7 +2,7 @@
     source: new ol.source.OSM()
 });
 
-var source = new ol.source.Vector({ wrapX: false });
+var source = new ol.source.Vector();
 
 var vector = new ol.layer.Vector({
     source: source,
@@ -43,30 +43,31 @@ function addInteraction() {
     var value = typeSelect.value;
     if (value !== 'None') {
         var geometryFunction, maxPoints;
-        if (value === 'Square') {
-            value = 'Circle';
-            geometryFunction = ol.interaction.Draw.createRegularPolygon(4);
-        } else if (value === 'Box') {
-            value = 'LineString';
-            maxPoints = 2;
-            geometryFunction = function (coordinates, geometry) {
-                if (!geometry) {
-                    geometry = new ol.geom.Polygon(null);
-                }
-                var start = coordinates[0];
-                var end = coordinates[1];
-                geometry.setCoordinates([
-                    [start, [start[0], end[1]], end, [end[0], start[1]], start]
-                ]);
-                return geometry;
-            };
-        }
+       
         draw = new ol.interaction.Draw({
             source: source,
             type: /** @type {ol.geom.GeometryType} */ (value),
             geometryFunction: geometryFunction,
             maxPoints: maxPoints
         });
+
+        draw.on('drawend', function (event) {
+            debugger;
+            var feature = event.feature;
+
+            if (typeSelect.value === "Point") {
+
+
+                $("#KapiEkle").modal('show');
+
+            } else {
+
+                $("#MahalleEkle").modal('show');
+            }
+
+        });
+
+
         map.addInteraction(draw);
     }
 }

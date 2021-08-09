@@ -17,7 +17,6 @@ namespace CBSMapInfo.Controllers
         //    _context = context;
         //} _context;
 
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -27,6 +26,20 @@ namespace CBSMapInfo.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+        public ActionResult DistrictAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DistrictAdd(string DistrictName, string kod)
+        {
+            //Basit olarak girilen verileri viewbag e atıp 
+            //Add View mizde gösteriyoruz.
+            ViewBag.DistrictName = DistrictName;
+            ViewBag.DistrictCode = kod;
             return View();
         }
 
