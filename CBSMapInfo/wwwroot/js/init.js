@@ -43,7 +43,7 @@ function addInteraction() {
     var value = typeSelect.value;
     if (value !== 'None') {
         var geometryFunction, maxPoints;
-       
+
         draw = new ol.interaction.Draw({
             source: source,
             type: /** @type {ol.geom.GeometryType} */ (value),
@@ -83,3 +83,45 @@ typeSelect.onchange = function (e) {
 };
 
 addInteraction();
+
+
+$(document).ready(function () {
+    $("#button").click(function () {
+
+        //alert("Heloo");
+        $("#myModal").modal();
+    })
+
+
+
+ 
+})
+
+function addDoor() {
+    var a = $("#DoorNo").val();
+    var b = $("#DistrictName").val();
+
+    var jsonData = {
+        ID:0,
+        DoorNo: parseInt(a),
+        Coordinates: b
+    };
+    $.ajax({
+        type: "POST",
+        dataType: 'JSON',
+        contentType: 'application/json',
+        url: '/Door/DoorAdd',
+        async: true,
+        data: JSON.stringify(jsonData),
+        success: function (data) {
+            debugger;
+            alert(data);
+
+        },
+        error: function (responce) {
+            debugger;
+
+            alert(responce);
+
+        }
+    })}

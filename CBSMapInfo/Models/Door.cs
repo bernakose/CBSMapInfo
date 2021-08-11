@@ -10,6 +10,7 @@ namespace CBSMapInfo.Models
     {
         [Key]
         public int ID { get; set; }
+        //public int DoorId { get; set; }
         public int DoorNo { get; set; }
         public string Coordinates { get; set; }
 

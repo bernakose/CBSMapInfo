@@ -33,15 +33,13 @@ namespace CBSMapInfo.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult DistrictAdd(string DistrictName, string kod)
-        {
-            //Basit olarak girilen verileri viewbag e atıp 
-            //Add View mizde gösteriyoruz.
-            ViewBag.DistrictName = DistrictName;
-            ViewBag.DistrictCode = kod;
-            return View();
-        }
+        //[HttpPost]
+        //public ActionResult DistrictAdd(string DistrictName, string kod)
+        //{            
+        //    ViewBag.DistrictName = DistrictName;
+        //    ViewBag.DistrictCode = kod;
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
