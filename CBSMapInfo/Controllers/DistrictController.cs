@@ -9,21 +9,20 @@ using CBSMapInfo.Models;
 
 namespace CBSMapInfo.Controllers
 {
-    public class DistrictsController : Controller
+    public class DistrictController : Controller
     {
-        //MapContext db = new MapContext();
 
-        private readonly MapContext _context;
+        private readonly MapContext _mapContext;
 
-        public DistrictsController(MapContext context)
+        public DistrictController(MapContext context)
         {
-            _context = context;
+            _mapContext = context;
         }
 
         // GET: Districts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Districts.ToListAsync());
+            return View(await _mapContext.District.ToListAsync());
         }
 
         // GET: Districts/Details/5
@@ -34,7 +33,7 @@ namespace CBSMapInfo.Controllers
                 return NotFound();
             }
 
-            var district = await _context.Districts
+            var district = await _mapContext.District
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (district == null)
             {
@@ -59,8 +58,8 @@ namespace CBSMapInfo.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(district);
-                await _context.SaveChangesAsync();
+                _mapContext.Add(district);
+                await _mapContext.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(district);
@@ -74,7 +73,7 @@ namespace CBSMapInfo.Controllers
                 return NotFound();
             }
 
-            var district = await _context.Districts.FindAsync(id);
+            var district = await _mapContext.District.FindAsync(id);
             if (district == null)
             {
                 return NotFound();
@@ -98,8 +97,8 @@ namespace CBSMapInfo.Controllers
             {
                 try
                 {
-                    _context.Update(district);
-                    await _context.SaveChangesAsync();
+                    _mapContext.Update(district);
+                    await _mapContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,7 +124,7 @@ namespace CBSMapInfo.Controllers
                 return NotFound();
             }
 
-            var district = await _context.Districts
+            var district = await _mapContext.District
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (district == null)
             {
@@ -140,15 +139,55 @@ namespace CBSMapInfo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var district = await _context.Districts.FindAsync(id);
-            _context.Districts.Remove(district);
-            await _context.SaveChangesAsync();
+            var district = await _mapContext.District.FindAsync(id);
+            _mapContext.District.Remove(district);
+            await _mapContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DistrictExists(int id)
         {
-            return _context.Districts.Any(e => e.ID == id);
+            return _mapContext.District.Any(e => e.ID == id);
+        }
+
+
+        [HttpPost]
+        public JsonResult DistrictAdd(string DistrictName, string Coordinates)
+        {
+
+            try
+            {
+                District dr = new District();
+                dr.DistrictName = DistrictName;
+                dr.Coordinates = Coordinates;
+
+                District ds = _mapContext.District.FirstOrDefault(a => a.DistrictName == DistrictName);
+
+                if (ds != null)
+                {
+                    string messages = "Aynı mahalle adı ile kayıt zaten mevcut!";
+
+                    return Json(false);
+
+                }
+                else
+                {
+                    _mapContext.District.Add(dr);
+                    _mapContext.SaveChanges();
+                }
+
+            
+
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+
+            }
+
+            string message = "Kayıt Başarılı!";
+
+            return Json(true);
         }
     }
 }

@@ -31,8 +31,7 @@ namespace CBSMapInfo
 
 
             services.AddControllersWithViews();
-            services.AddDbContext<MapContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-
+            services.AddDbContext<MapContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
         }

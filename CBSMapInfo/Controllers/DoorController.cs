@@ -24,14 +24,36 @@ namespace CBSMapInfo.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult DoorAdd(Door doorid)
+        public JsonResult DoorAdd(int DoorNo, int DistrictCode, string Coordinates)
         {
-            _mapContext.Doors.Add(doorid);
-            _mapContext.SaveChanges();
+            try
+            {
+                Door dn = new Door();
+                dn.DoorNo = DoorNo;
+                dn.Coordinates = Coordinates;
 
+                Door dk = _mapContext.Door.FirstOrDefault(a => a.DoorNo == DoorNo);
+
+                if (dk != null)
+                {
+                    string messages = "Aynı kapı kaydı zaten mevcut!";
+
+                    return Json(false);
+                }
+                else
+                {
+                    _mapContext.Door.Add(dn);
+                    _mapContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+
+            }
             string message = "Kayıt Başarılı!";
 
-            return Json(true);
+            return Json(true);           
         }
     }
 }
