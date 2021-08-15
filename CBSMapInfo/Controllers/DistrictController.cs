@@ -175,8 +175,7 @@ namespace CBSMapInfo.Controllers
                     _mapContext.District.Add(dr);
                     _mapContext.SaveChanges();
                 }
-
-            
+                           
 
             }
             catch (Exception ex)
